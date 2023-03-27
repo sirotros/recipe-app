@@ -5,7 +5,7 @@ import { Title } from "../base/Title";
 import { api } from "@/api";
 export const Header = () => {
   const [searchTitle, setSearchTitle] = useState<string>("");
-  const [recipes, setRecipes] = useState<[]>([]);
+  const [recipes, setRecipes] = useState<Array<any>>([]);
   const getRecipesTitle = async (searchTitle: string) => {
     if (searchTitle.length > 2) {
       const response = await api.get(`/autocomplete?query=${searchTitle}`);
@@ -33,7 +33,7 @@ export const Header = () => {
         {recipes && (
           <ul className="absolute top-14 w-52 z-50">
             {recipes?.map((recipe) => (
-              <li className="text-center border p-1 bg-white text-dark" onClick={()=> setSearchTitle("")}>
+              <li className="text-center border p-1 bg-white text-dark" key={recipe.id} onClick={()=> setSearchTitle("")}>
                 <Link href={`/detail/${recipe.id}`} className="w-full">
                   {recipe?.title}
                 </Link>

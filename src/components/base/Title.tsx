@@ -2,12 +2,12 @@ import Link from "next/link";
 import { FC } from "react";
 
 type TitleProps = {
-  children: string;
+  children: string | string[];
   link?: string;
-  classNames?:string 
+  classNames?:string | string[];
 };
 export const Title: FC<TitleProps> = ({ children, link, classNames }) => {
-  const classes = `font-dancing text-4xl ${classNames}`;
+  const classes = `font-dancing text-4xl ${classNames || ""}`;
   return (
     <>
       {link && (
